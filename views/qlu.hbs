@@ -1,6 +1,6 @@
 <body id="page-top">
 <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
-    <div class="container"><a class="navbar-brand" href="index">Tinder</a>
+    <div class="container"><a class="navbar-brand" href="index.hbs">Tinder</a>
         <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right"
                 type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
@@ -8,14 +8,14 @@
             <ul class="nav navbar-nav ml-auto text-uppercase">
                 <li class="nav-item" role="presentation"></li>
                 <li class="nav-item" role="presentation"></li>
-                <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#team">Tiếng
+                <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="">Tiếng
                     Viêt</a></li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link js-scroll-trigger" href="qlu">Quản lí User</a>
+                    <a class="nav-link js-scroll-trigger" href="qlu.hbs">Quản lí User</a>
                 </li>
             </ul>
         </div>
-        <a href="dn" class="btn btn-primary text-danger" role="button"
+        <a href="dn.hbs" class="btn btn-primary text-danger" role="button"
            style="background-color: rgb(255,255,255);color: rgb(255,2,2);">ĐĂNG NHẬP</a></div>
 </nav>
 <header class="masthead"
@@ -30,26 +30,28 @@
             <div class="col-lg-12 text-center">
                 <h2 class="text-uppercase section-heading">Quản lí user</h2>
                 <h3 class="text-muted section-subheading"></h3>
-                <div style="margin-bottom: 20px;"><input placeholder="Tìm kiếm user..." type="text"
-                                                         style="width: 350px;height: 40px;border-radius: 10px; margin-left: 700px;">
+                <div style="margin-bottom: 20px;"><label>
+                    <input placeholder="Tìm kiếm user..." type="text"
+                           style="width: 350px;height: 40px;border-radius: 10px; margin-left: 700px;">
+                </label>
                 </div>
 
-                    <div class="table-responsive">
+                <div class="table-responsive">
 
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Chức năng</th>
-                                <th>Avatar</th>
-                                <th>Tài khoản</th>
-                                <th>Mật khẩu</th>
-                                <th>Họ và tên</th>
-                                <th>Địa chỉ</th>
-                                <th>SĐT & Email</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <form action="/insertUser" method="post" enctype="multipart/form-data">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Chức năng</th>
+                            <th>Avatar</th>
+                            <th>Tài khoản</th>
+                            <th>Mật khẩu</th>
+                            <th>Họ và tên</th>
+                            <th>Địa chỉ</th>
+                            <th>SĐT & Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <form action="/insertUser" method="post" enctype="multipart/form-data">
                             <tr>
                                 <td>
 
@@ -58,43 +60,58 @@
                                     </button>
 
                                 </td>
-                                <td><input name="avatar" type="file"  ></td>
-                                <td><input name="username" placeholder="Enter username" style="border-radius: 20px"></td>
-                                <td><input name="password" placeholder="Enter password" type="password" style="border-radius: 20px"></td>
-                                <td><input name="name" placeholder="Enter name" style="border-radius: 20px"></td>
-                                <td><input name="address" placeholder="Enter address" style="border-radius: 20px"></td>
-                                <td><input name="number_phone" placeholder="Enter number phone"style="border-radius: 20px"></td>
+                                <td><input name="avatar" type="file"></td>
+                                <td><label>
+                                    <input name="username" placeholder="Enter username" style="border-radius: 20px">
+                                </label>
+                                </td>
+                                <td><label>
+                                    <input name="password" placeholder="Enter password" type="password"
+                                               style="border-radius: 20px">
+                                </label></td>
+                                <td><label>
+                                    <input name="name" placeholder="Enter name" style="border-radius: 20px">
+                                </label></td>
+                                <td><label>
+                                    <input name="address" placeholder="Enter address" style="border-radius: 20px">
+                                </label></td>
+                                <td><label>
+                                    <input name="number_phone" placeholder="Enter number phone"
+                                               style="border-radius: 20px">
+                                </label></td>
 
                             </tr>
-                </form>
-                            {{#each users}}
-                                <tr>
-                                    <td>
+                        </form>
+                        {{#each users}}
+                            <tr>
+                                <td>
 
-                                        <a class="btn btn-primary" type="button"
-                                           style="background-color: rgb(61,59,53); width: 100px"
-                                           href="/edit/{{this.id}}">Sửa</a>
+                                    <a class="btn btn-primary" type="button"
+                                       style="background-color: rgb(61,59,53); width: 100px"
+                                       href="/edit/{{this.id}}">Sửa</a>
 
 
-                                        <form action="{{this._id}}" enctype="multipart/form-data" method="post">
-                                            <button class="btn btn-primary" type="submit"
-                                                    style="background-color: rgb(61,59,53);width: 100px">Xóa
-                                            </button>
-                                        </form>
-                                    </td>
-                                    <td><img
-                                            class="img-fluid d-block mx-auto" style="width: 75px; height: 75px; border-radius: 5px" src="../assets/img/portfolio/{{this.avatar}}"></td>
-                                    <!--                                <td>{{this._id}}</td>-->
-                                    <td>{{this.username}}</td>
-                                    <td>{{this.password}}</td>
-                                    <td>{{this.name}}</td>
-                                    <td>{{this.address}}</td>
-                                    <td>{{this.number_phone}}</td>
-                                </tr>
-                            {{/each}}
-                            </tbody>
-                        </table>
-                    </div>
+                                    <form action="{{this._id}}" enctype="multipart/form-data" method="post">
+                                        <button class="btn btn-primary" type="submit"
+                                                style="background-color: rgb(61,59,53);width: 100px">Xóa
+                                        </button>
+                                    </form>
+                                </td>
+                                <td><img
+                                        class="img-fluid d-block mx-auto"
+                                        style="width: 75px; height: 75px; border-radius: 5px"
+                                        src="../assets/img/portfolio/{{this.avatar}}" alt=""></td>
+                                <!--                                <td>{{this._id}}</td>-->
+                                <td>{{this.username}}</td>
+                                <td>{{this.password}}</td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.address}}</td>
+                                <td>{{this.number_phone}}</td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
 
@@ -170,7 +187,7 @@
                             <div class="modal-body">
                                 <h2 class="text-uppercase">Project Name</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p><img
-                                    class="img-fluid d-block mx-auto" src="../assets/img/portfolio/1-full.jpg">
+                                    class="img-fluid d-block mx-auto" src="../assets/img/portfolio/1-full.jpg" alt="">
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae
@@ -200,7 +217,7 @@
                             <div class="modal-body">
                                 <h2 class="text-uppercase">Project Name</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p><img
-                                    class="img-fluid d-block mx-auto" src="../assets/img/portfolio/2-full.jpg">
+                                    class="img-fluid d-block mx-auto" src="../assets/img/portfolio/2-full.jpg" alt="">
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae
@@ -230,7 +247,7 @@
                             <div class="modal-body">
                                 <h2 class="text-uppercase">Project Name</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p><img
-                                    class="img-fluid d-block mx-auto" src="../assets/img/portfolio/3-full.jpg">
+                                    class="img-fluid d-block mx-auto" src="../assets/img/portfolio/3-full.jpg" alt="">
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae
@@ -260,7 +277,7 @@
                             <div class="modal-body">
                                 <h2 class="text-uppercase">Project Name</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p><img
-                                    class="img-fluid d-block mx-auto" src="../assets/img/portfolio/4-full.jpg">
+                                    class="img-fluid d-block mx-auto" src="../assets/img/portfolio/4-full.jpg" alt="">
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae
@@ -290,7 +307,7 @@
                             <div class="modal-body">
                                 <h2 class="text-uppercase">Project Name</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p><img
-                                    class="img-fluid d-block mx-auto" src="../assets/img/portfolio/5-full.jpg">
+                                    class="img-fluid d-block mx-auto" src="../assets/img/portfolio/5-full.jpg" alt="">
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae
@@ -320,7 +337,7 @@
                             <div class="modal-body">
                                 <h2 class="text-uppercase">Project Name</h2>
                                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p><img
-                                    class="img-fluid d-block mx-auto" src="../assets/img/portfolio/6-full.jpg">
+                                    class="img-fluid d-block mx-auto" src="../assets/img/portfolio/6-full.jpg" alt="">
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
                                     adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
                                     repellat aperiam quasi sunt officia expedita beatae
