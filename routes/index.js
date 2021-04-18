@@ -73,7 +73,7 @@ router.get('/qlu', upload.single('avatar'), function (req, res, next) {
 //Thêm
 router.post('/insertUser', upload.single('avatar'), function (req, res) {
     var userConnect = db.model('users', user);
-    var run = userConnect({
+    userConnect({
         avatar: req.file.filename,
         username: req.body.username,
         password: req.body.password,
